@@ -1,47 +1,208 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e); /* Deep space vibe */
-    overflow: hidden;
+    background: linear-gradient(-45deg, #0f0c29, #1a1a40, #24243e, #000000);
+    background-size: 400% 400%;
+    animation: gradientFlow 12s ease infinite;
+    position: relative;
 }
+
+/* Animated Background */
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.background-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,255,255,0.15), transparent 70%);
+    animation: floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+    0%,100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-40px);
+    }
+}
+
+/* Glass Card */
 
 .glass-card {
-    width: 85%;
-    max-width: 400px;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.07);
+    position: relative;
+    z-index: 2;
+
+    width: 90%;
+    max-width: 500px;
+
+    padding: 45px;
+
     border-radius: 30px;
-    text-align: center;
-    /* The Glass Core */
+
+    background: rgba(255, 255, 255, 0.08);
+
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 0 40px rgba(0,255,255,0.15),
+        0 0 80px rgba(0,255,255,0.05);
+
+    text-align: center;
+
+    transition: transform 0.2s ease;
 }
 
-h1 { color: white; font-weight: 300; margin-bottom: 30px; }
+/* Clock */
 
-input {
-    width: 100%;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 15px;
+.live-clock {
+    color: #00ffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Title */
+
+.title {
     color: white;
-    outline: none;
+    font-size: 42px;
+    margin-bottom: 15px;
+    font-family: 'Orbitron', sans-serif;
+    min-height: 60px;
 }
 
-.shortcuts { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+.subtitle {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 30px;
+}
+
+/* Search */
+
+.search-box input {
+    width: 100%;
+    padding: 18px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.search-box input:focus {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 20px rgba(0,255,255,0.4);
+
+    background: rgba(255,255,255,0.12);
+}
+
+/* Chips */
+
+.shortcuts {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
 .chip {
     text-decoration: none;
-    color: rgba(255,255,255,0.8);
-    font-size: 12px;
-    padding: 8px 15px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    transition: 0.3s;
+
+    border: 1px solid rgba(255,255,255,0.1);
 }
+
+.chip:hover {
+    transform: translateY(-5px) scale(1.08);
+
+    background: rgba(0,255,255,0.2);
+
+    box-shadow:
+        0 0 20px rgba(0,255,255,0.5);
+}
+
+/* Button */
+
+.start-btn {
+    margin-top: 35px;
+
+    padding: 16px 30px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 20px;
+
+    background: linear-gradient(45deg, #00ffff, #0077ff);
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+}
+
+.start-btn:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 25px rgba(0,255,255,0.7);
+}
+
+/* Canvas */
+
+#particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+                     }
